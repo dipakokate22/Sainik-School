@@ -81,7 +81,7 @@ export default function Navbar() {
                   <Link href="/Listing">School List</Link>
                 </li>
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
-                  <Link href="/about">About Us</Link>
+                  <Link href="/SchoolDetails">About Us</Link>
                 </li>
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
                   <Link href="/career-counselling">Career Counselling</Link>
