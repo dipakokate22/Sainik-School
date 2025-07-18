@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Poppins } from 'next/font/google';
+import './globals.css';
+import Navbar from "@/Components/NavBar";
+import Footer from "@/Components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '700'] // Include weights you need, e.g., 400 for regular, 700 for bold
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,11 +26,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    {/* Apply the font class to the body */}
+    <body className={poppins.className}>
+      {children}
+    </body>
+  </html>
   );
 }
+
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    // This is the main container for your entire site.
+    // We apply the background color here.
+    <div className="bg-[#F7F1EE] min-h-screen">
+      <Navbar />
+      {/* This main tag will hold the page-specific content */}
+      {/* We apply the max-width and center it with mx-auto */}
+      <main className="max-w-[1440px] mx-auto">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export { Layout };
