@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
 
 // --- SVG Icons ---
 const LocationPinIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -128,7 +129,7 @@ const SchoolListSection = () => {
                     />
                     <span className="text-[20px] font-normal text-[#6C6B6B] ">{board}</span>
                   </div>
-                  <span className="text-[20px] font-normal text-[#353535]">(10)</span>
+                  <span className="text-[20px] font-normal text-[#353535]">({getCount('board', board)})</span>
                 </label>
               ))}
             </div>
@@ -207,7 +208,9 @@ const SchoolListSection = () => {
               <img
                 src={school.image}
                 alt={school.name}
-                className="w-[408px] h-full shrink-0 rounded-md object-cover"
+                width={402} // adjust based on your needs
+                height={214} // adjust based on your needs
+                className="w-[402px] h-full shrink-0 rounded-md object-cover"
               />
 
               {/* School Info */}
