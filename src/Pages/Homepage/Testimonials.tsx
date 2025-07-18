@@ -105,7 +105,7 @@ const Testimonials = () => {
           <div className="mx-auto flex w-full max-w-[800px] max-h-[350px] flex-col items-center rounded-xl border border-gray-300 p-8 sm:p-12">
             <StarRating rating={activeTestimonial.rating} />
             <p className="mt-6 text-center text-[20px] font-normal leading-relaxed text-gray-800">
-              "{activeTestimonial.quote}"
+              {activeTestimonial.quote}
             </p>
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-6 sm:flex-row">
               <div className="flex items-center gap-4">

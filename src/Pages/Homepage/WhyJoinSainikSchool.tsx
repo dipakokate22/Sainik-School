@@ -99,7 +99,7 @@ const WhyJoinSainikSchool = () => {
             Where courage meets discipline, and education <br />
             shapes future defense leaders. <br />
             Sainik Schools are more than institutions — they <br />
-            are launchpads for tomorrow's heroes.
+            are launchpads for tomorrows heroes.
           </p>
           <button className="bg-[#1C1F24]/100 hover:bg-[#2c2d30]/100 text-white font-semibold w-[218px] h-[40px] rounded-full flex items-center justify-center transition-colors">
             Explore All Schools
