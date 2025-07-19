@@ -71,7 +71,7 @@ export default function Navbar() {
 
           {/* Dropdown Menu - Positioned relative to the button's parent */}
           {isOpen && (
-            <div className="absolute top-full mt-3 right-0 w-56 bg-[#1C1F24] text-white font-normal font-poppins text-base rounded-xl shadow-xl p-2 z-50">
+            <div className="absolute top-[65px] mt-3 right-0 w-56 bg-[#1C1F24] text-white font-normal font-poppins text-base rounded-xl shadow-xl p-2 z-50">
               <ul className="space-y-1">
                 {/* CHANGE 1: Added cursor-pointer to each list item. */}
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
@@ -81,13 +81,13 @@ export default function Navbar() {
                   <Link href="/Listing">School List</Link>
                 </li>
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
-                  <Link href="/SchoolDetails">About Us</Link>
+                  <Link href="/About">About Us</Link>
                 </li>
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
-                  <Link href="/career-counselling">Career Counselling</Link>
+                  <Link href="/SchoolDetails">Career Counselling</Link>
                 </li>
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
-                  <Link href="/news">News & Updates</Link>
+                  <Link href="/NewsUpdates">News & Blogs</Link>
                 </li>
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
                   <Link href="/contact">Contact Us</Link>
@@ -99,9 +99,11 @@ export default function Navbar() {
 
         {/* CHANGE 3: Font set to 16px (text-base) and font-normal. */}
         {/* CHANGE 1: Added cursor-pointer. */}
+        <Link href="/AddSchool">
         <span className="text-white text-base font-normal cursor-pointer hover:underline">
           Add Your School
         </span>
+        </Link>
 
         {/* CHANGE 3: Font set to 16px (text-base) and font-medium. */}
         {/* CHANGE 1: Added cursor-pointer. */}

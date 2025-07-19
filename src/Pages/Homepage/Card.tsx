@@ -22,7 +22,7 @@ const schools = [
 export default function SchoolsSection() {
   return (
     // CHANGE 5 & 6: Set section padding, max-width, and removed fixed height
-    <section className="w-full max-w-[1440px] mx-auto bg-white flex flex-col items-center py-[80px] px-[72px]">
+    <section className="w-full max-w-full mx-auto bg-white flex flex-col items-center py-[80px] px-[72px]">
       
       {/* Title Section */}
       <div className="text-center">

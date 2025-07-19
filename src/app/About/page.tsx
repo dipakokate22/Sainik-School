@@ -1,12 +1,13 @@
 import Footer from "@/Components/Footer";
 import Navbar from "@/Components/NavBar";
-import Add from "./Add";
+import about from "./about";
+import AboutUsSection from "./about";
 
 export default function Page() {
   return (
     <div>
         <Navbar/>
-        <Add/>
+        <AboutUsSection/>
         <Footer/>
     </div>
   )

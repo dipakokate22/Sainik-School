@@ -42,7 +42,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       {/* This main tag will hold the page-specific content */}
       {/* We apply the max-width and center it with mx-auto */}
-      <main className="max-w-[1440px] mx-auto">
+      <main className="max-w-full mx-auto">
         {children}
       </main>
       <Footer />
