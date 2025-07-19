@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const AddSchoolPage = () => {
   return (
-    <main className="bg-[#FBF8F3] px-4 md:px-10 lg:px-[120px] py-10 lg:py-[80px] min-h-screen w-full flex flex-col items-center">
+    <main className="bg-[#F7F1EE] px-4 md:px-10 lg:px-[120px] py-10 lg:py-[80px] min-h-screen max-w-full flex flex-col items-center  mb-[80px]">
       {/* Header Section */}
       <header className="text-center mb-10">
         <h1 className="text-[26px] md:text-[30px] lg:text-[32px] font-medium text-gray-800">
@@ -19,7 +19,7 @@ const AddSchoolPage = () => {
       </header>
 
       {/* White Form Container */}
-      <div className="bg-white w-full max-w-[1200px] min-h-[1020px] p-4 sm:p-8 md:p-10 lg:p-12 rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex flex-col">
+      <div className="bg-white w-full max-w-[1200px] min-h-[900px] p-4 sm:p-8 md:p-10 lg:p-12 rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.2)] flex flex-col">
         <form className="flex-grow flex flex-col">
           {/* School Information Section */}
           <section className="mb-8">
@@ -133,7 +133,7 @@ const AddSchoolPage = () => {
 
           {/* Terms and Submit */}
           <div>
-            <div className="flex items-start mb-[40px] w-full">
+            <div className="flex items-start mb-[50px] w-full">
               <input
                 type="checkbox"
                 id="terms"
