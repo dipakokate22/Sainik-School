@@ -1,20 +1,26 @@
-// components/Navbar.js
-
 'use client';
+
 import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { FaMapMarkerAlt, FaSearch } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
-import Link from 'next/link';
+import ProfileDropdown from './ProfileDropdown'; // We will create this component next
 
+// The entire component is now one single function, which fixes the error.
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  // State for the "Explore" dropdown
+  const [isExploreOpen, setIsExploreOpen] = useState(false);
+  const exploreDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown if clicked outside
+  // This state will determine if we show "Login" or the Profile icon.
+  // In a real app, this would come from an authentication context or hook.
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Set to `true` for demonstration
+
+  // Effect to close the "Explore" dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+      if (exploreDropdownRef.current && !exploreDropdownRef.current.contains(event.target as Node)) {
+        setIsExploreOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -22,19 +28,12 @@ export default function Navbar() {
   }, []);
 
   return (
-    // CHANGE 2: Removed fixed height, using padding instead for perfect vertical alignment.
-    // CHANGE 2: Updated padding to py-[23px] and px-[30px].
     <div className="bg-[#1C1F24] max-w-[1380px] mx-auto mt-4 rounded-[20px] flex items-center justify-between shadow-lg text-white py-[23px] px-[30px]">
       
-      {/* Left Section */}
-      {/* CHANGE 4: Using gap-[30px] for consistent spacing. */}
-      {/* CHANGE 5 & 6: items-center ensures all items are vertically aligned. */}
+      {/* Left Section (Your existing code - unchanged) */}
       <div className="flex items-center gap-[30px]">
         <span className="text-white text-[32px] font-poppins font-bold">Sainik</span>
 
-        {/* CHANGE 3: Font set to 16px (text-base) and font-medium. */}
-        {/* CHANGE 1: Added cursor-pointer for clarity. */}
-        {/* CHANGE 7: flex, items-center, and padding (px-4) centers content. */}
         <button className="h-10 px-4 rounded-full bg-[#257B5A] text-white flex items-center gap-2 hover:bg-green-800 transition cursor-pointer font-medium text-base">
           <FaMapMarkerAlt size={14} />
           <span>Schools Near You</span>
@@ -42,8 +41,6 @@ export default function Navbar() {
 
         <div className="flex items-center h-10 bg-white rounded-full pl-4 pr-3">
           <FaSearch className="text-[#257B5A]" size={14} />
-          {/* CHANGE 3: Font set to 16px (text-base) and font-normal. */}
-          {/* CHANGE 4: Added ml-2 for a small gap between icon and text. */}
           <input
             type="text"
             placeholder="Search"
@@ -52,28 +49,23 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Right Section */}
-      {/* CHANGE 4: Using gap-[30px] for consistent spacing. */}
-      {/* We add a ref to the container for better dropdown positioning. */}
-      <div className="flex items-center gap-[30px]" ref={dropdownRef}>
+      {/* Right Section - ref is moved to the "Explore" container */}
+      <div className="flex items-center gap-[30px]">
         
-        {/* Explore Dropdown Container - making this relative helps position the dropdown menu */}
-        <div className="relative">
-          {/* CHANGE 3: Font set to 16px (text-base) and font-normal. */}
-          {/* CHANGE 1: Added cursor-pointer. */}
+        {/* Explore Dropdown Container */}
+        <div className="relative" ref={exploreDropdownRef}>
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsExploreOpen(!isExploreOpen)}
             className="h-10 px-4 rounded-full bg-[#B91C1C] text-white flex items-center gap-2 hover:bg-red-800 transition cursor-pointer font-normal text-base"
           >
             <span>Explore</span>
-            <IoIosArrowDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+            <IoIosArrowDown size={14} className={`transition-transform duration-300 ${isExploreOpen ? 'rotate-180' : ''}`} />
           </button>
 
-          {/* Dropdown Menu - Positioned relative to the button's parent */}
-          {isOpen && (
+          {/* Explore Dropdown Menu */}
+          {isExploreOpen && (
             <div className="absolute top-[65px] mt-3 right-0 w-56 bg-[#1C1F24] text-white font-normal font-poppins text-base rounded-xl shadow-xl p-2 z-50">
               <ul className="space-y-1">
-                {/* CHANGE 1: Added cursor-pointer to each list item. */}
                 <li className="hover:bg-[#257B5A] px-3 py-2 rounded-md cursor-pointer transition-colors duration-200">
                   <Link href="/Schools">Recommended Schools</Link>
                 </li>
@@ -97,19 +89,23 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* CHANGE 3: Font set to 16px (text-base) and font-normal. */}
-        {/* CHANGE 1: Added cursor-pointer. */}
         <Link href="/AddSchool">
-        <span className="text-white text-base font-normal cursor-pointer hover:underline">
-          Add Your School
-        </span>
+          <span className="text-white text-base font-normal cursor-pointer hover:underline">
+            Add Your School
+          </span>
         </Link>
 
-        {/* CHANGE 3: Font set to 16px (text-base) and font-medium. */}
-        {/* CHANGE 1: Added cursor-pointer. */}
-        <button className="h-10 px-6 rounded-full bg-[#257B5A] text-white hover:bg-green-800 transition cursor-pointer font-medium text-base">
-          Login
-        </button>
+        {/* --- THIS IS THE FIXED AND INTEGRATED PART --- */}
+        {/* It conditionally shows the Profile Dropdown or the Login button */}
+        {isLoggedIn ? (
+          <ProfileDropdown />
+        ) : (
+          <Link href="/login">
+            <button className="h-10 px-6 rounded-full bg-[#257B5A] text-white hover:bg-green-800 transition cursor-pointer font-medium text-base">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
